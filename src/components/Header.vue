@@ -18,7 +18,7 @@
               >未读消息
             </router-link>
           </el-badge>
-          <router-link to="/getstart">新手入门</router-link>
+          <router-link to="/getstart">新手入门12</router-link>
           <router-link to="/api">API</router-link>
           <router-link to="/about">关于</router-link>
           <router-link to="/"><span @click="quit">退出</span></router-link>
