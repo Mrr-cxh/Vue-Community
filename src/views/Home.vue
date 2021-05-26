@@ -133,7 +133,6 @@ export default {
         this.currentPage = 1;
         // const queryTab = newValue ? `&tab=${newValue}` : "";
         const queryTab = newValue ? `${newValue}` : "";
-        // console.log(queryTab);
         const res = await this.$axios.get(
           `/topics?page=${this.currentPage}&limit=40&tab=${queryTab}`
         );
