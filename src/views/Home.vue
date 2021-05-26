@@ -131,7 +131,9 @@ export default {
     tab: {
       async handler(newValue) {
         this.currentPage = 1;
-        const queryTab = newValue ? `&tab=${newValue}` : "";
+        // const queryTab = newValue ? `&tab=${newValue}` : "";
+        const queryTab = newValue ? `${newValue}` : "";
+        console.log(queryTab);
         const res = await this.$axios.get(
           `/topics?page=${this.currentPage}&limit=40&tab=${queryTab}`
         );
@@ -176,7 +178,8 @@ export default {
   methods: {
     changePage(val) {
       this.currentPage = val;
-      const queryTab = this.tab ? `&tab=${this.tab}` : "";
+      // const queryTab = this.tab ? `&tab=${this.tab}` : "";
+      const queryTab = this.tab ? `${this.tab}` : "";
       if (queryTab) {
         const res = this.$axios
           .get(`/topics?page=${this.currentPage}&limit=40&tab=${queryTab}`)
