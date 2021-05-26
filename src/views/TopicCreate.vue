@@ -80,7 +80,6 @@ export default {
   methods: {
     postSubmit() {
       const res = this.$axios.post("/topics", {
-        // accesstoken: this.arr.accesstoken,
         accesstoken: this.getToken,
         title: this.arr.title,
         tab: this.value,
@@ -91,7 +90,7 @@ export default {
   },
   computed: {
     getToken() {
-      return this.$store.state.token;
+      return JSON.parse(localStorage.getItem("token")).token;
     }
   }
 };

@@ -170,8 +170,14 @@ export default {
           .fromNow();
       };
     },
-    getToken() {
+    /*  getToken() {
       return this.$store.state.token;
+    } */
+    getToken() {
+      return JSON.parse(localStorage.getItem("token")).token;
+    },
+    getUserId() {
+      return JSON.parse(localStorage.getItem("token")).id;
     }
   },
   async created() {
@@ -197,9 +203,9 @@ export default {
         // 6088d3f54d20cb572468f2ee
         if (this.topic.author.loginname !== this.istoken.loginname) {
           const res = await this.$axios.post(`reply/${id}/ups`, {
-            accesstoken: "6908a8ba-8edc-4b56-8d44-c70d0af022fb"
+            accesstoken: this.getToken
           });
-          const userId = "6088d3f54d20cb572468f2ee";
+          const userId = this.getUserId;
           const currentComment = this.topic.replies.find(
             item => item.id === id
           );
@@ -218,12 +224,12 @@ export default {
     collect(id) {
       if (this.topic.is_collect) {
         this.$axios.post(`topic_collect/de_collect`, {
-          accesstoken: "6908a8ba-8edc-4b56-8d44-c70d0af022fb",
+          accesstoken: this.getToken,
           topic_id: id
         });
       } else {
         this.$axios.post(`topic_collect/collect`, {
-          accesstoken: "6908a8ba-8edc-4b56-8d44-c70d0af022fb",
+          accesstoken: this.getToken,
           topic_id: id
         });
       }
@@ -234,7 +240,7 @@ export default {
       const { text } = this;
       if (text) {
         const res = await this.$axios.post(`topic/${this.topic.id}/replies`, {
-          accesstoken: "6908a8ba-8edc-4b56-8d44-c70d0af022fb",
+          accesstoken: this.getToken,
           content: `${text} `
         });
         // 如何更新页面
@@ -265,7 +271,7 @@ export default {
       const { reply_text } = this;
       if (reply_text) {
         const res = await this.$axios.post(`topic/${this.topic.id}/replies`, {
-          accesstoken: "6908a8ba-8edc-4b56-8d44-c70d0af022fb",
+          accesstoken: this.getToken,
           content: `${reply_text}`,
           reply_id: id
         });
